@@ -1,4 +1,7 @@
 Your answers to the questions go here.
+
+I found this challenge very interesting. It did take me a good amount of time to finished it as I was trying to familiriaze myself with DataDog. I felt that this is as much as takehome challenge as training for DataDog Solution Engineer as you learn so much of what dataDog is. 
+
 ##  Prerequisites - Setup the environment
 
 Following instructions from Hiring exercise I set up  virtual environment with Vagrant on my computer. It was my first experience with vagrant so I use my time to learn about Vagrant from their introduction page on vagrantup.com. After that I opened Datadog account using “Datadog Recruiting Candidate” ( username:zoransasvic@me.com ). After signing up, I used plenty of time to familiarize myself with product before continuing with challenge.

@@ -11,13 +11,14 @@ Following instructions from Hiring exercise I set up  virtual environment with V
 
 First task was to add  tags in the Agent config file. I used couple of tags for the purposes of the training such as app:frontend; app:intake; role:database; role:webserver. Screenshot was taken by accesing on Datadog website Infrastructure-HostMap and clicking on agents. Following the instructions I took a screenshot :
 
-<img width="1237" alt="screen shot 2018-08-04 at 10 36 09 pm" src="https://user-images.githubusercontent.com/33996832/43683038-cfb1fdb6-9838-11e8-8559-be740ac3ac42.png">
+<img width="1263" alt="screen shot 2018-08-05 at 1 16 08 pm" src="https://user-images.githubusercontent.com/33996832/43689587-c9043c80-98b1-11e8-8625-209863340c3a.png">
 
 ## Database Integration
 
-After initially struggling with Mongo; I decided to install PostgreSQL in the VE. Also I follow the examples how to integrate PostgreSQL on Datadog. Also Configuration file needed to be updated as well. Screenshot was taken by accessing DataDog website Dashboards-Dasboard List and clicking on Postgres-Metrics:
+After initially struggling with Mongo; I decided to install MySQL in the VE. Also I follow the examples how to integrate MySQL on Datadog. Also Configuration file needed to be updated as well. Screenshot was taken by accessing DataDog website Dashboards-Dasboard List and clicking on MySQL-Overview:
 
-<img width="1299" alt="screen shot 2018-08-04 at 11 02 22 pm" src="https://user-images.githubusercontent.com/33996832/43683181-38b112c8-983b-11e8-9ece-b8090931f08f.png">
+<img width="1291" alt="screen shot 2018-08-05 at 1 20 05 pm" src="https://user-images.githubusercontent.com/33996832/43689630-5f5eea0e-98b2-11e8-8038-4f909da36c3f.png">
+
 
 ## Creating a custom Agent check
 
@@ -37,7 +38,7 @@ Bonus question was "Can you change the collection interval without modifying the
 
 ## Visualizing Data: Timeboard
 
-Part of this challenge was to utilize the Datadog API to create a Timeboard that contains: Your custom metric scoped over your host; any metric from the Integration on your Database with the anomaly function applied and your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Timeboard with a name "Zoran-DataDog-Challenge:" was created and anomaly fucntion was applied as well as rollup function to sum up all points. Code is listed bellow:
+Part of this challenge was to utilize the Datadog API to create a Timeboard that contains: Your custom metric scoped over your host; any metric from the Integration on your Database with the anomaly function applied and your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Timeboard with a name "Zoran-DataDog-TimeBoard" was created and anomaly fucntion was applied as well as rollup function to sum up all points. Code is listed bellow:
 
 ```
 from datadog import initialize, api
@@ -185,7 +186,7 @@ Question is :'What is the difference between a Service and a Resource"? Service 
 
 ## Final Question:
 
-One og the thing I was thinking is Supermarkets. By monitoring number of some items on the shelves you can send notifications when some item run low so instead of worker manualy checking if something needs to be stock.As soon as customer take the item fromn the shelves data is updated and simply setting aleerts when number of items is low, you will be able to know what need to be restock. Also fruit and vegetable area for example temperature  can be monitor and if is too high or too low, alert can be send. Same goes for coolers. Going even more insane, every line can provide number of people who are waiting in that particular line to pay so you can easily find a line with smaller number of customers to exit the store as fast as you can instead of visually trying to figure it out. 
+One of the thing I was thinking is Supermarkets. By monitoring number of some items on the shelves you can send notifications when some item run low so instead of worker manualy checking if something needs to be stock.As soon as customer take the item fromn the shelves data is updated and simply setting aleerts when number of items is low, you will be able to know what need to be restock. Also fruit and vegetable area for example temperature  can be monitor and if is too high or too low, alert can be send. Same goes for coolers. Going even more insane, every line can provide number of people who are waiting in that particular line to pay so you can easily find a line with smaller number of customers to exit the store as fast as you can instead of visually trying to figure it out. 
 
 
 

@@ -18,4 +18,8 @@ After initially struggling with Mongo; I decided to install PostgreSQL in the VE
 
 ## Creating a custom Agent check
 
-Last part of collecting metrics was to submits a metric named my_metric with a random value between 0 and 1000 and also change your check's collection interval so that it only submits the metric once every 45 seconds. After I creating a new file in Python I capture of process and code in following screenshots
+Last part of collecting metrics was to submits a metric named my_metric with a random value between 0 and 1000 and also change your check's collection interval so that it only submits the metric once every 45 seconds. After I creating a new file in Python I capture of process and code in following screenshots:
+
+<img width="711" alt="screen shot 2018-08-02 at 11 18 09 am" src="https://user-images.githubusercontent.com/33996832/43683234-7ce8802e-983c-11e8-8307-9ae8eb2407fc.png">
+
+

@@ -37,28 +37,260 @@ Bonus question was "Can you change the collection interval without modifying the
 Part of this challenge was to utilize the Datadog API to create a Timeboard that contains: Your custom metric scoped over your host; any metric from the Integration on your Database with the anomaly function applied and your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Timeboard with a name "Zoran-DataDog-Challenge:" was created and anomaly fucntion was applied as well as rollup function to sum up all points. Code is listed bellow:
 
 ```python
-from datadog import initialize, api
-options = {'api_key': '8b96bea313315d381580e77971b614a4', 'app_key': ‘44ac1d10b45af60e309aa2ddadc507cc6a4bcfd2'}
-initialize(**options)
-title = “Zoran-DataDog-Challenge”
-description = "my metric data board”
-graphs = [{
-	"title": "Metric data”,
-	"definition": {
-	"events": [],
-	"requests": [
-		{"q": "anomalies(avg:my_metric{host:vagrant}, 'basic', 		2)”},
-		{"q": "avg:my_metric{host:vagrant}.rollup(sum, 3600)”}
-		],
-	}
-}]
-read_only = False
-api.Timeboard.create(title=title, description=description,graphs=graphs, read_only=read_only)
+Last login: Sat Aug  4 19:44:22 on ttys002
+➜  deploy cd ../
+➜  Datadog-challenge ls
+README.md                                deploy                                   ubuntu-xenial-16.04-cloudimg-console.log
+app.py                                   hello.py
+➜  Datadog-challenge vagrant ssh
+Welcome to Ubuntu 16.04.5 LTS (GNU/Linux 4.4.0-131-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+0 packages can be updated.
+0 updates are security updates.
+
+
+Last login: Sun Aug  5 08:22:21 2018 from 10.0.2.2
+vagrant@ubuntu-xenial:~$ wget - 0 - http://0.0.0.0:8000
+--2018-08-05 08:32:23--  http://-/
+Resolving - (-)... failed: Name or service not known.
+wget: unable to resolve host address ‘-’
+--2018-08-05 08:32:23--  http://0/
+Resolving 0 (0)... 0.0.0.0
+Connecting to 0 (0)|0.0.0.0|:80... failed: Connection refused.
+--2018-08-05 08:32:23--  http://-/
+Resolving - (-)... failed: Name or service not known.
+wget: unable to resolve host address ‘-’
+--2018-08-05 08:32:23--  http://0.0.0.0:8000/
+Connecting to 0.0.0.0:8000... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 29 [text/html]
+Saving to: ‘index.html.6’
+
+index.html.6                             100%[==================================================================================>]      29  --.-KB/s    in 0s      
+
+2018-08-05 08:32:23 (5.71 MB/s) - ‘index.html.6’ saved [29/29]
+
+FINISHED --2018-08-05 08:32:23--
+Total wall clock time: 0.1s
+Downloaded: 1 files, 29 in 0s (5.71 MB/s)
+vagrant@ubuntu-xenial:~$ wget - 0 - http://0.0.0.0/api/apm:8000
+--2018-08-05 08:32:35--  http://-/
+Resolving - (-)... failed: Name or service not known.
+wget: unable to resolve host address ‘-’
+--2018-08-05 08:32:35--  http://0/
+Resolving 0 (0)... 0.0.0.0
+Connecting to 0 (0)|0.0.0.0|:80... failed: Connection refused.
+--2018-08-05 08:32:35--  http://-/
+Resolving - (-)... failed: Name or service not known.
+wget: unable to resolve host address ‘-’
+--2018-08-05 08:32:35--  http://0.0.0.0/api/apm:8000
+Connecting to 0.0.0.0:80... failed: Connection refused.
+vagrant@ubuntu-xenial:~$ wget - 0 - http://0.0.0.0:8000/api/apm
+--2018-08-05 08:32:52--  http://-/
+Resolving - (-)... failed: Name or service not known.
+wget: unable to resolve host address ‘-’
+--2018-08-05 08:32:52--  http://0/
+Resolving 0 (0)... 0.0.0.0
+Connecting to 0 (0)|0.0.0.0|:80... failed: Connection refused.
+--2018-08-05 08:32:52--  http://-/
+Resolving - (-)... failed: Name or service not known.
+wget: unable to resolve host address ‘-’
+--2018-08-05 08:32:52--  http://0.0.0.0:8000/api/apm
+Connecting to 0.0.0.0:8000... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 19 [text/html]
+Saving to: ‘apm.1’
+
+apm.1                                    100%[==================================================================================>]      19  --.-KB/s    in 0s      
+
+2018-08-05 08:32:52 (2.04 MB/s) - ‘apm.1’ saved [19/19]
+
+FINISHED --2018-08-05 08:32:52--
+Total wall clock time: 0.1s
+Downloaded: 1 files, 19 in 0s (2.04 MB/s)
+vagrant@ubuntu-xenial:~$ wget - 0 - http://0.0.0.0:8000/api/trace
+--2018-08-05 08:35:54--  http://-/
+Resolving - (-)... failed: Name or service not known.
+wget: unable to resolve host address ‘-’
+--2018-08-05 08:35:54--  http://0/
+Resolving 0 (0)... 0.0.0.0
+Connecting to 0 (0)|0.0.0.0|:80... failed: Connection refused.
+--2018-08-05 08:35:54--  http://-/
+Resolving - (-)... failed: Name or service not known.
+wget: unable to resolve host address ‘-’
+--2018-08-05 08:35:54--  http://0.0.0.0:8000/api/trace
+Connecting to 0.0.0.0:8000... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 14 [text/html]
+Saving to: ‘trace.2’
+
+trace.2                                  100%[==================================================================================>]      14  --.-KB/s    in 0s      
+
+2018-08-05 08:35:54 (1.06 MB/s) - ‘trace.2’ saved [14/14]
+
+FINISHED --2018-08-05 08:35:54--
+Total wall clock time: 0.1s
+Downloaded: 1 files, 14 in 0s (1.06 MB/s)
+vagrant@ubuntu-xenial:~$ wget - 0 - http://0.0.0.0:8000/api/trace
+--2018-08-05 08:35:57--  http://-/
+Resolving - (-)... failed: Name or service not known.
+wget: unable to resolve host address ‘-’
+--2018-08-05 08:35:57--  http://0/
+Resolving 0 (0)... 0.0.0.0
+Connecting to 0 (0)|0.0.0.0|:80... failed: Connection refused.
+--2018-08-05 08:35:57--  http://-/
+Resolving - (-)... failed: Name or service not known.
+wget: unable to resolve host address ‘-’
+--2018-08-05 08:35:57--  http://0.0.0.0:8000/api/trace
+Connecting to 0.0.0.0:8000... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 14 [text/html]
+Saving to: ‘trace.3’
+
+trace.3                                  100%[==================================================================================>]      14  --.-KB/s    in 0s      
+
+2018-08-05 08:35:57 (1.67 MB/s) - ‘trace.3’ saved [14/14]
+
+FINISHED --2018-08-05 08:35:57--
+Total wall clock time: 0.09s
+Downloaded: 1 files, 14 in 0s (1.67 MB/s)
+vagrant@ubuntu-xenial:~$ wget - 0 - http://0.0.0.0:8000/api/trace
+--2018-08-05 08:35:59--  http://-/
+Resolving - (-)... failed: Name or service not known.
+wget: unable to resolve host address ‘-’
+--2018-08-05 08:35:59--  http://0/
+Resolving 0 (0)... 0.0.0.0
+Connecting to 0 (0)|0.0.0.0|:80... failed: Connection refused.
+--2018-08-05 08:35:59--  http://-/
+Resolving - (-)... failed: Name or service not known.
+wget: unable to resolve host address ‘-’
+--2018-08-05 08:35:59--  http://0.0.0.0:8000/api/trace
+Connecting to 0.0.0.0:8000... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 14 [text/html]
+Saving to: ‘trace.4’
+
+trace.4                                  100%[==================================================================================>]      14  --.-KB/s    in 0s      
+
+2018-08-05 08:35:59 (1.81 MB/s) - ‘trace.4’ saved [14/14]
+
+FINISHED --2018-08-05 08:35:59--
+Total wall clock time: 0.09s
+Downloaded: 1 files, 14 in 0s (1.81 MB/s)
+vagrant@ubuntu-xenial:~$ ls
+apm    apm.py  app.pyc              index.html    index.html.2  index.html.4  index.html.6  trace    trace.2  trace.4
+apm.1  app.py  ddagent-install.log  index.html.1  index.html.3  index.html.5  timeboard.py  trace.1  trace.3
+vagrant@ubuntu-xenial:~$ rm index.html index.html.2 index.html.4
+vagrant@ubuntu-xenial:~$ ls
+apm    apm.py  app.pyc              index.html.1  index.html.5  timeboard.py  trace.1  trace.3
+apm.1  app.py  ddagent-install.log  index.html.3  index.html.6  trace         trace.2  trace.4
+vagrant@ubuntu-xenial:~$ rm index.html.1 index.html.5 index.html.3 index.html.6
+vagrant@ubuntu-xenial:~$ ls
+apm  apm.1  apm.py  app.py  app.pyc  ddagent-install.log  timeboard.py  trace  trace.1  trace.2  trace.3  trace.4
+vagrant@ubuntu-xenial:~$ rm trace.1 trace.2 trace.3 trace.4
+vagrant@ubuntu-xenial:~$ cd /etc/datadog-agent/
+vagrant@ubuntu-xenial:/etc/datadog-agent$ ls
+auth_token  checks.d  conf.d  datadog.yaml  datadog.yaml.example
+vagrant@ubuntu-xenial:/etc/datadog-agent$ cd checks.d/
+vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ ls
+checkvalue.py  checkvalue.pyc
+vagrant@ubuntu-xenial:/etc/datadog-agent/checks.d$ cd /home/vagrant/
+vagrant@ubuntu-xenial:~$ ls
+apm  apm.1  apm.py  app.py  app.pyc  ddagent-install.log  timeboard.py  trace
+vagrant@ubuntu-xenial:~$ vim timeboard.py 
+vagrant@ubuntu-xenial:~$ python timeboard.py 
+vagrant@ubuntu-xenial:~$ sudo service datadog-agent restart
+vagrant@ubuntu-xenial:~$ vim timeboard.py 
+vagrant@ubuntu-xenial:~$ touch timeboard2.py
+vagrant@ubuntu-xenial:~$ vim timeboard2.py 
+vagrant@ubuntu-xenial:~$ sudo service datadog-agent restart
+vagrant@ubuntu-xenial:~$ python timeboard2.py 
+vagrant@ubuntu-xenial:~$ mysql -u root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+vagrant@ubuntu-xenial:~$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 258
+Server version: 5.7.23-0ubuntu0.16.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+vagrant@ubuntu-xenial:~$ vim timeboard2.py 
+
+graphs = [
+     {
+        "definition": {
+            "events": [],
+            "requests": [
+                {   "q": "avg:my_metric{host:ubuntu-xenial}",
+                }
+            ],
+        },
+        "title": "my_metric"
+    },
+     {
+        "definition": {
+            "events": [],
+            "requests": [
+                {
+                    "q": "anomalies(avg:mysql.net.connections{host:ubuntu-xenial}, 'basic', 2)"
+                }
+            ],
+        },
+        "title": "mysql connections  anomalies"
+    },
+     {
+        "definition": {
+            "events": [],
+            "requests": [
+                {
+                    "q": "avg:my_metric{host:ubuntu-xenial}.rollup(sum,3600)"
+                }
+            ],
+        },
+        "title": "my_metric rollup"
+    },
+]
+read_only = True
+api.Timeboard.create(title=title,
+                     description=description,
+                     graphs=graphs,
+                     read_only=read_only)
+                                                   
 ```
 
-Screenshot of it provided here:
+Screenshot of the timeBoard is privded here:
 
-<img width="783" alt="screen shot 2018-08-02 at 12 52 51 pm" src="https://user-images.githubusercontent.com/33996832/43683523-a205bd58-9842-11e8-8d2f-88bfee514e9f.png">
+
+
 
 After accessing Dashboard from your Dashboard List in the UI, Timeboard's timeframe was set to the past 5 minutes. Snapshot of this graph was took and use the @ notation to send it to ourself .
 
@@ -138,5 +370,10 @@ Screenshot is provided here:
 <img width="669" alt="screen shot 2018-08-05 at 1 22 51 am" src="https://user-images.githubusercontent.com/33996832/43684083-66853284-984e-11e8-974b-516506acef37.png">
 
 After that on DataDog website under the dashboard I added some of  APM data and system metric data.
+
+<img width="1238" alt="screen shot 2018-08-05 at 1 38 05 am" src="https://user-images.githubusercontent.com/33996832/43684199-779429a2-9850-11e8-86ad-07f5442da6ad.png">
+
+Public URL of that Dashobard Data is provided here: https://p.datadoghq.com/sb/2c0cfd46c-fc640196d77616c9c7f57554e53a6ef1
+
 
 

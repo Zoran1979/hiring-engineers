@@ -62,4 +62,26 @@ Screenshot of it provided here:
 
 After accessing Dashboard from your Dashboard List in the UI, Timeboard's timeframe was set to the past 5 minutes. Snapshot of this graph was took and use the @ notation to send it to ourself .
 
+<img width="503" alt="screen shot 2018-08-05 at 12 14 48 am" src="https://user-images.githubusercontent.com/33996832/43683651-314c5a2e-9845-11e8-9cc3-c27c205a1898.png">
+
+## Bonus Question:
+
+Bonus question was What is the Anomaly graph displaying? Anomaly detection is an algorithmic feature that allows you to identify when a metric is behaving differently than it has in the past, taking into account trends, seasonal day-of-week and time-of-day patterns. You can find more in DataDog docs on https://docs.datadoghq.com/monitors/monitor_types/anomaly/
+
+## Monitoring Data
+
+This part of the challenge was manipulation with the monitor. It was asked to create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:Warning threshold of 500;alerting threshold of 800 and also ensure that it will notify you if there is No Data for this query over the past 10m.Monitor’s message was created on the website under Monitor with warning/alerts and No data Info. 
+
+```
+{{#is_no_data}}data is missing in last 10 minutes. {{/is_no_data}}
+
+{{#is_alert}}Alerting threshold of {{value}}, host ip address is {{host.ip}} {{/is_alert}}
+
+{{#is_warning}} Warning threshold of {{value}}, host ip address is {{host.ip}} {{/is_warning}}
+
+@zoransavic@me.com
+
+```
+This a screenshot of an e-mail that I recieved:
+
 

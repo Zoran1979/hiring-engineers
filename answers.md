@@ -30,3 +30,30 @@ Last part of collecting metrics was to submits a metric named my_metric with a r
 
 Bonus question was "Can you change the collection interval without modifying the Python check file you created"? , and answer is yes simply by using the User Interface from dataDog website. In order for you to do that click simply on Metrics -Summary and find file you want to modify. Cliuck on that file and click on a pennext to Metadata. After yopu modify changes you want, simply save changes. Screenshot of the process :
 
+<img width="1395" alt="screen shot 2018-08-04 at 11 22 44 pm" src="https://user-images.githubusercontent.com/33996832/43683320-d90ff7f0-983d-11e8-882f-103bdb1b44fc.png">
+
+## Visualizing Data: Timeboard
+
+Part of this challenge was to utilize the Datadog API to create a Timeboard that contains: Your custom metric scoped over your host; any metric from the Integration on your Database with the anomaly function applied and your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket. Timeboard with a name "Zoran-DataDog-Challenge:" was created and anomaly fucntion was applied as well as rollup function to sum up all points. Code is listed bellow:
+
+```python
+from datadog import initialize, api
+options = {'api_key': '8b96bea313315d381580e77971b614a4', 'app_key': ‘44ac1d10b45af60e309aa2ddadc507cc6a4bcfd2'}
+initialize(**options)
+title = “Zoran-DataDog-Challenge”
+description = "my metric data board”
+graphs = [{
+	"title": "Metric data”,
+	"definition": {
+	"events": [],
+	"requests": [
+		{"q": "anomalies(avg:my_metric{host:vagrant}, 'basic', 		2)”},
+		{"q": "avg:my_metric{host:vagrant}.rollup(sum, 3600)”}
+		],
+	}
+}]
+read_only = False
+api.Timeboard.create(title=title, description=description,graphs=graphs, read_only=read_only)
+```
+
+Screenshot of it provided here:

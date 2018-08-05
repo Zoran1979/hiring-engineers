@@ -88,7 +88,7 @@ api.Timeboard.create(title=title,
                                                    
 ```
 
-Screenshot of the timeBoard is privded here:
+Screenshot of the timeBoard is provided here:
 
 <img width="1298" alt="screen shot 2018-08-05 at 2 26 56 am" src="https://user-images.githubusercontent.com/33996832/43684569-7e4fbb88-9857-11e8-91f6-524688d27a91.png">
 
@@ -175,6 +175,14 @@ After that on DataDog website under the dashboard I added some of  APM data and 
 <img width="1238" alt="screen shot 2018-08-05 at 1 38 05 am" src="https://user-images.githubusercontent.com/33996832/43684199-779429a2-9850-11e8-86ad-07f5442da6ad.png">
 
 Public URL of that Dashobard Data is provided here: https://p.datadoghq.com/sb/2c0cfd46c-fc640196d77616c9c7f57554e53a6ef1
+
+## Bonus Question
+
+Question is :'What is the difference between a Service and a Resource"? Service is a set of processes that do the same job.A resource is a particular action for a given service.
+
+## Final Question:
+
+One og the thing I was thinking is Supermarkets. By monitoring number of some items on the shelves you can send notifications when some item run low so instead of worker manualy checking if something needs to be stock.As soon as customer take the item fromn the shelves data is updated and simply setting aleerts when number of items is low, you will be able to know what need to be restock. Also fruit and vegetable area for example temperature  can be monitor and if is too high or too low, alert can be send. Same goes for coolers. Going even more insane, every line can provide number of people who are waiting in that particular line to pay so you can easily find a line with smaller number of customers to exit the store as fast as you can instead of visually trying to figure it out. 
 
 
 

@@ -14,3 +14,8 @@ First task was to add  tags in the Agent config file. I used couple of tags for 
 
 After initially struggling with Mongo; I decided to install PostgreSQL in the VE. Also I follow the examples how to integrate PostgreSQL on Datadog. Also Configuration file needed to be updated as well. Screenshot was taken by accessing DataDog website Dashboards-Dasboard List and clicking on Postgres-Metrics:
 
+<img width="1299" alt="screen shot 2018-08-04 at 11 02 22 pm" src="https://user-images.githubusercontent.com/33996832/43683181-38b112c8-983b-11e8-9ece-b8090931f08f.png">
+
+## Creating a custom Agent check
+
+Last part of collecting metrics was to submits a metric named my_metric with a random value between 0 and 1000 and also change your check's collection interval so that it only submits the metric once every 45 seconds. After I creating a new file in Python I capture of process and code in following screenshots

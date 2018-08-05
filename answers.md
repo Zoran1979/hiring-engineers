@@ -90,6 +90,47 @@ This a screenshot of an e-mail that I recieved:
 
 Bonus question was to set up two scheduled downtimes for this monitor: One that silences it from 7pm to 9am daily on M-F and one that silences it all day on Sat-Sun.Also to set up an  email that  will notified when you schedule the downtime and take a screenshot of that notification.To do this you simply navigate on website to Monitors and choose Manage Downtime.There I set up two different downtimes. One that will run from Saturday 12:01 am until Sunday 11:59 pm and second that will be go daily from 7 pm until 9 am next day. I realized that two of them will run concurently over the weekend but that was necessary so downtime can be recurring. I alsno noticed that weekend one ending at Sunday midnight , when in reality it could be extended by Monday morning but that was already covered by Daily downtime (6 pm-9am). In the screenshot that I am submitting there is a typo that I fixed by editing the message.
 
+<img width="508" alt="screen shot 2018-08-05 at 1 03 16 am" src="https://user-images.githubusercontent.com/33996832/43683955-5d709362-984b-11e8-9125-b939bf2e839d.png">
 
+## Collecting APM Data:
 
-##Collecting APM Data:
+In collecting APM Data I used FLASK APP that was provided :
+
+```
+from flask import Flask
+import logging
+import sys
+
+from ddtrace import tracer
+from ddtrace.contrib.flask import TraceMiddleware
+from ddtrace import patch_all
+import blinker as _
+
+# Have flask use stdout as the logger
+main_logger = logging.getLogger()
+main_logger.setLevel(logging.DEBUG)
+c = logging.StreamHandler(sys.stdout)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+c.setFormatter(formatter)
+main_logger.addHandler(c)
+
+app = Flask(__name__)
+
+traced_app = TraceMiddleware(app, tracer, service="flask_trace", distributed_tracing=False)
+
+@app.route('/')
+def api_entry():
+        return 'Entrypoint to the Application'
+@app.route('/api/apm')
+def apm_endpoint():
+        return 'Getting APM Started'
+@app.route('/api/trace')
+def trace_endpoint():
+        return 'Posting Traces'
+
+if __name__ == '__main__':
+        app.run(host='0.0.0.0', port='8000')
+	
+```
+	
+Screenshot is provided here:

@@ -22,4 +22,4 @@ Last part of collecting metrics was to submits a metric named my_metric with a r
 
 <img width="711" alt="screen shot 2018-08-02 at 11 18 09 am" src="https://user-images.githubusercontent.com/33996832/43683234-7ce8802e-983c-11e8-8307-9ae8eb2407fc.png">
 
-
+<img width="492" alt="screen shot 2018-08-02 at 11 29 10 am" src="https://user-images.githubusercontent.com/33996832/43683248-909bf452-983c-11e8-8aa4-1a9d59d39a72.png">

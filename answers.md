@@ -84,4 +84,9 @@ This part of the challenge was manipulation with the monitor. It was asked to cr
 ```
 This a screenshot of an e-mail that I recieved:
 
+<img width="476" alt="screen shot 2018-08-05 at 12 48 52 am" src="https://user-images.githubusercontent.com/33996832/43683842-713a349a-9849-11e8-9024-ed6855d97d45.png">
+
+## Bonus Question
+
+Bonus question was to set up two scheduled downtimes for this monitor: One that silences it from 7pm to 9am daily on M-F and one that silences it all day on Sat-Sun.Also to set up an  email that  will notified when you schedule the downtime and take a screenshot of that notification.To do this you simply navigate on website to Monitors and choose Manage Downtime.There I set up two different downtimes. One that will run from Saturday 12:01 am until Sunday 11:59 pm and second that will be go daily from 7 pm until 9 am next day. I realized that two of them will run concurently over the weekend but that was necessary so downtime can be recurring. I alsno noticed that weekend one ending at Sunday midnight , when in reality it could be extended by Monday morning but that was already covered by Daily downtime (6 pm-9am). In the screenshot that I am submitting there is a typo that I fixed by editing the message.
 

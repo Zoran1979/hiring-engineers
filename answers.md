@@ -57,3 +57,9 @@ api.Timeboard.create(title=title, description=description,graphs=graphs, read_on
 ```
 
 Screenshot of it provided here:
+
+<img width="783" alt="screen shot 2018-08-02 at 12 52 51 pm" src="https://user-images.githubusercontent.com/33996832/43683523-a205bd58-9842-11e8-8d2f-88bfee514e9f.png">
+
+After accessing Dashboard from your Dashboard List in the UI, Timeboard's timeframe was set to the past 5 minutes. Snapshot of this graph was took and use the @ notation to send it to ourself .
+
+

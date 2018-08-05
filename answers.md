@@ -1,7 +1,7 @@
 Your answers to the questions go here.
 ##  Prerequisites - Setup the environment
 
-Following instructions from Hiring exercise I set up  virtual environment with Vagrant on my computer. It was my first experience with vagrant so I use my time to learn about Vagrant from their introduction page on vagrantup.com. After that I opened Datadog account using “Datadog Recruiting Candidate” ( zoransasvic@me.com and Password: Application007). After signing up, I used plenty of time to familiarize myself with product before continuing with challenge.
+Following instructions from Hiring exercise I set up  virtual environment with Vagrant on my computer. It was my first experience with vagrant so I use my time to learn about Vagrant from their introduction page on vagrantup.com. After that I opened Datadog account using “Datadog Recruiting Candidate” ( username:zoransasvic@me.com ). After signing up, I used plenty of time to familiarize myself with product before continuing with challenge.
 
 ## Collecting Metrics:
 
@@ -134,3 +134,9 @@ if __name__ == '__main__':
 ```
 	
 Screenshot is provided here:
+
+<img width="669" alt="screen shot 2018-08-05 at 1 22 51 am" src="https://user-images.githubusercontent.com/33996832/43684083-66853284-984e-11e8-974b-516506acef37.png">
+
+After that on DataDog website under the dashboard I added some of  APM data and system metric data.
+
+
